@@ -1,0 +1,23 @@
+SELECT count(DISTINCT salary),  count(salary)  FROM public.salaries;
+
+-- order by can be followed by ASC or DESC, the identifier also apply only to the column next to it.
+SELECT first_name, last_name FROM public.employees
+ORDER BY first_name ASC;
+
+SELECT first_name, last_name FROM public.employees
+ORDER BY length(first_name) DESC;
+
+
+--**select from multiple table this is such common practice that infact it could be done by inner join **
+/*
+select a.emp_no, a.first_name, b.salary, b.from_date
+from employees as a, salaries as b
+where a.emp_no = b.emp_no
+ORDER by a.emp_no ASC;
+
+*/
+
+SELECT a.emp_no, a.first_name AS "name", b.salary
+FROM employees AS a
+INNER JOIN salaries AS b ON b.emp_no = a.emp_no;
+
